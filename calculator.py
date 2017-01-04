@@ -15,38 +15,43 @@ from arithmetic import *
 #     else
 #         decide which math function to call based on first token
 
+def calculator():
+    while True:
+        request = raw_input("> ")
+        components = request.split(" ")
+        math_func = components[0]
 
-while True:
-    request = raw_input("> ")
-    components = request.split(" ")
-    math_func = components[0]
-    num1 = components[1]
-    num2 = components[2]
+        if len(components) == 2:
+            components.append(0)
 
-
-
-    if math_func == "q":
-        return
-    elif math_func == "+":
-        return arithmetic.add(num1, num2)
-    elif math_func == "-":
-        return arithmetic.subtract(num1, num2)
-    elif math_func == "*":
-        return arithmetic.multiply(num1, num2)
-    elif math_func == "/":
-        return arithmetic.divide(num1, num2)
-    elif math_func == "square":
-        return arithmetic.square(num1)
-    elif math_func == "cube":
-        return arithmetic.cube(num1)
-    elif math_func == "pow":
-        return arithmetic.power(num1, num2)
-    elif math_func == "mod":
-        return arithmetic.mod(num1, num2)
-    else:
-        print "I don't recognize your request :("
-        continue
-
-        
+        try:
+            num1 = int(components[1])
+            num2 = int(components[2])
+        except ValueError:
+            print "numbers only, please! try again."
+            continue
 
 
+        if math_func == "q":
+            return
+        elif math_func == "+":
+            print add(num1, num2)
+        elif math_func == "-":
+            print subtract(num1, num2)
+        elif math_func == "*":
+            print multiply(num1, num2)
+        elif math_func == "/":
+            print divide(num1, num2)
+        elif math_func == "square":
+            print square(num1)
+        elif math_func == "cube":
+            print cube(num1)
+        elif math_func == "pow":
+            print power(num1, num2)
+        elif math_func == "mod":
+            print mod(num1, num2)
+        else:
+            print "I don't recognize your request :("
+            continue
+
+calculator()     

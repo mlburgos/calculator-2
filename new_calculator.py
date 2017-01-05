@@ -26,6 +26,8 @@ def my_reduce(func, num_list):
     return x
 
 def calculator():
+    decimal = raw_input(" how many decimals would you like to see? \n")
+
     while True:
         request = raw_input("> ")
 
@@ -44,7 +46,7 @@ def calculator():
         try:
             i = 0
             while i < len(num_list):
-                num_list[i] = int(num_list[i])
+                num_list[i] = float(num_list[i])
                 i += 1
 
         except ValueError:
@@ -52,23 +54,27 @@ def calculator():
             continue
 
         if math_func == "+":
-            print my_reduce(add, num_list)
+            result = my_reduce(add, num_list)
         elif math_func == "-":
-            print my_reduce(subtract, num_list)
+            result = my_reduce(subtract, num_list)
         elif math_func == "*":
-            print my_reduce(multiply, num_list)
+            result = my_reduce(multiply, num_list)
         elif math_func == "/":
-            print my_reduce(divide, num_list)
+            result = my_reduce(divide, num_list)
         elif math_func == "square":
-            print square(num_list[0])
+            result = square(num_list[0])
         elif math_func == "cube":
-            print cube(num_list[0])
+            result = cube(num_list[0])
         elif math_func == "pow":
-            print my_reduce(power, num_list)
+            result = my_reduce(power, num_list)
         elif math_func == "mod":
-            print my_reduce(mod, num_list)
+            result = my_reduce(mod, num_list)
         else:
             print "I don't recognize your request :("
             continue
+
+        output = "%." + decimal + "f" 
+
+        print output % result 
 
 calculator()     

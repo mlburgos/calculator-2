@@ -5,7 +5,7 @@ Using our arithmetic.py file from Exercise02, create the
 calculator program yourself in this file.
 """
 
-from arithmetic import *
+from new_arithmetic import *
 
 # # while True:
 #     read input
@@ -22,36 +22,43 @@ def calculator():
         if request == "q":
             return
 
-        components = request.split(" ")
+        components = request.rstrip().split(" ")
         math_func = components[0]
+        num_list = components[1:]
 
-        if len(components) == 2:
-            components.append(0)
+        if (math_func == 'square' or math_func == 'cube') and len(num_list) > 1:
+            print "I can only take one argument for that operation"
+            continue
+        elif math_func == 'pow' and len(num_list) > 2:
+            print "I can only take two arguments for that operation"
+            continue
 
         try:
-            num1 = int(components[1])
-            num2 = int(components[2])
+            i = 0
+            while i < len(num_list):
+                num_list[i] = int(num_list[i])
+                i += 1
+
         except ValueError:
             print "numbers only, please! try again."
             continue
 
-
         if math_func == "+":
-            print add(num1, num2)
+            print add(num_list)
         elif math_func == "-":
-            print subtract(num1, num2)
+            print subtract(num_list)
         elif math_func == "*":
-            print multiply(num1, num2)
+            print multiply(num_list)
         elif math_func == "/":
-            print divide(num1, num2)
+            print divide(num_list)
         elif math_func == "square":
-            print square(num1)
+            print square(num_list[0])
         elif math_func == "cube":
-            print cube(num1)
+            print cube(num_list[0])
         elif math_func == "pow":
-            print power(num1, num2)
+            print power(num_list[0], num_list[1])
         elif math_func == "mod":
-            print mod(num1, num2)
+            print mod(num_list)
         else:
             print "I don't recognize your request :("
             continue

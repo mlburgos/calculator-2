@@ -29,7 +29,7 @@ def multiply(num_list):
     return product
 
 
-def divide(num1, num2):
+def divide(num_list):
     """divides all numbers in series
     """
     quotient = num_list[0]
@@ -56,10 +56,19 @@ def cube(num1):
     return num1 * num1 * num1
 
 
-def power(num1, num2):
+def power(num_list):
     """raises first number to power of second number 
     """
-    return num1 ** num2  # ** = exponent operator
+
+    product = num_list[0]
+    i = 1
+
+    while i < len(num_list):
+        product = product ** num_list[i]
+        i += 1
+
+    return product
+
 
 
 def mod(num_list):
